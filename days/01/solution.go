@@ -97,7 +97,6 @@ func part2(in []string) int {
 	sum := 0
 	for _, line := range in {
 		v := getResultNum(line)
-		fmt.Println(v)
 		sum += v
 	}
 	return sum
@@ -105,7 +104,7 @@ func part2(in []string) int {
 
 func main() {
 	in := getInput()
-	// fmt.Printf("PART 1: %d\n", part1(in))
+	fmt.Printf("PART 1: %d\n", part1(in))
 
 	fmt.Printf("PART 2: %d\n", part2(in))
 }
