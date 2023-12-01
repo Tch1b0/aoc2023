@@ -5,6 +5,7 @@ import (
 	stdstrings "strings"
 
 	"github.com/Tch1b0/polaris/input"
+	"github.com/Tch1b0/polaris/runes"
 	"github.com/Tch1b0/polaris/strings"
 )
 
@@ -29,7 +30,7 @@ func getInput() []string {
 func getNumbers(str string) []int {
 	nums := []int{}
 	for _, c := range str {
-		if c >= '0' && c <= '9' {
+		if runes.IsDigit(c) {
 			nums = append(nums, int(c-'0'))
 		}
 	}
@@ -73,7 +74,7 @@ func getResultNum(str string) int {
 		buf += string(c)
 
 		// check if character is a literal digit
-		if c >= '0' && c <= '9' {
+		if runes.IsDigit(c) {
 			digits += string(c)
 			break
 		} else /* check for word digit */ if d := containsWordDigit(buf); d != nil {
@@ -90,13 +91,13 @@ func getResultNum(str string) int {
 	// iterate over string backwards
 	for i := len(str) - 1; i >= 0; i-- {
 		// get current character
-		c := str[i]
+		c := rune(str[i])
 
 		// append character at front of buffer, so it comes out as forward text
 		buf = string(c) + buf
 
 		// check if character is a literal digit
-		if c >= '0' && c <= '9' {
+		if runes.IsDigit(c) {
 			digits += string(c)
 			break
 		} else /* check for word digit */ if d := containsWordDigit(buf); d != nil {
