@@ -8,7 +8,7 @@ import (
 	"github.com/Tch1b0/polaris/strings"
 )
 
-var digit = map[string]int{
+var digitWord = map[string]int{
 	"one":   1,
 	"two":   2,
 	"three": 3,
@@ -49,7 +49,7 @@ func part1(in []string) int {
 }
 
 func containsWordDigit(str string) *int {
-	for key, value := range digit {
+	for key, value := range digitWord {
 		if stdstrings.Contains(str, key) {
 			return &value
 		}
@@ -62,28 +62,44 @@ func getResultNum(str string) int {
 	var buf string
 	digits := ""
 
-	// first number
+	// get first number
+
+	// reset buffer
 	buf = ""
+
+	// iterate over string forwards
 	for _, c := range str {
+		// append new character to buffer
 		buf += string(c)
+
+		// check if character is a literal digit
 		if c >= '0' && c <= '9' {
 			digits += string(c)
 			break
-		} else if d := containsWordDigit(buf); d != nil {
+		} else /* check for word digit */ if d := containsWordDigit(buf); d != nil {
 			digits += strings.Itoa(*d)
 			break
 		}
 	}
 
-	// last number
+	// get last number
+
+	// reset buffer
 	buf = ""
+
+	// iterate over string backwards
 	for i := len(str) - 1; i >= 0; i-- {
+		// get current character
 		c := str[i]
+
+		// append character at front of buffer, so it comes out as forward text
 		buf = string(c) + buf
+
+		// check if character is a literal digit
 		if c >= '0' && c <= '9' {
 			digits += string(c)
 			break
-		} else if d := containsWordDigit(buf); d != nil {
+		} else /* check for word digit */ if d := containsWordDigit(buf); d != nil {
 			digits += strings.Itoa(*d)
 			break
 		}
