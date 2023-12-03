@@ -40,7 +40,7 @@ type Game struct {
 
 func getInput() []Game {
 	return input.Process("./days/02/input.txt", func(str string) []Game {
-		// replace the evil "\r", which was trying to make me go insane and split lines
+		// remove the evil "\r", which was trying to make me go insane, and split lines
 		lines := stdstrings.Split(stdstrings.ReplaceAll(str, "\r", ""), "\n")
 		games := []Game{}
 
@@ -63,8 +63,8 @@ func getInput() []Game {
 					// omit the trailing whitespace " X COLOR" to "X COLOR"
 					part = part[1:]
 
+					// split number and color at space, so from "X COLOR" to ["X", "COLOR"]
 					splittedPart := stdstrings.Split(part, " ")
-
 					strCount, color := splittedPart[0], splittedPart[1]
 
 					count, err := strings.Atoi(strCount)
