@@ -1,3 +1,3 @@
 # AOC day 01
 
-[Task](https://adventofcode.com/2022/day/1)
+[Task](https://adventofcode.com/2023/day/1)
