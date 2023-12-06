@@ -1,0 +1,3 @@
+# AOC day 06
+
+[Task](https://adventofcode.com/2022/day/6)
